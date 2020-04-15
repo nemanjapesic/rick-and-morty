@@ -11,11 +11,9 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <div className="container mx-auto my-10">
-        {characters.map((character) => (
-          <p key={character.id}>{character.name}</p>
-        ))}
-      </div>
+      {characters.map((character) => (
+        <p key={character.id}>{character.name}</p>
+      ))}
     </React.Fragment>
   );
 };
