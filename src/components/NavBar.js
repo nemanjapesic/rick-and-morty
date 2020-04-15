@@ -9,7 +9,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-wrap bg-blue-500 py-4">
+    <nav className="relative flex items-center justify-between flex-wrap bg-blue-500 py-4">
       <div className="flex items-center flex-shrink-0 text-white mr-4 pl-4">
         <Link to="/">
           <span className="font-bold text-2xl tracking-tight">
@@ -33,19 +33,26 @@ const NavBar = () => {
         </button>
       </div>
       <div
-        className={`w-full flex-grow md:flex md:items-center md:w-auto ${
-          menuOpen ? "block" : "hidden"
+        className={`w-full flex-grow md:flex md:items-center md:w-auto md:relative bg-blue-500 ${
+          menuOpen ? "absolute block" : "hidden"
         }`}
+        style={{ top: "100%" }}
       >
-        <div className="ml-auto px-4 mt-4 border-t border-white md:border-0 md:mt-0">
+        <div className="ml-auto px-4 border-t border-white md:border-0 md:mt-0">
+          <Link to="/">
+            <span className="block my-4 mr-4 md:inline-block md:my-0 text-blue-200 hover:text-white transition duration-200">
+              Characters
+            </span>
+          </Link>
+
           <Link to="/favorites">
-            <span className="block mt-4 mr-4 md:inline-block md:mt-0 text-blue-200 hover:text-white transition duration-200">
+            <span className="block my-4 mr-4 md:inline-block md:my-0 text-blue-200 hover:text-white transition duration-200">
               Favorites
             </span>
           </Link>
 
           <Link to="/about">
-            <span className="block mt-4 mr-4 md:inline-block md:mt-0 text-blue-200 hover:text-white transition duration-200">
+            <span className="block my-4 mr-4 md:inline-block md:my-0 text-blue-200 hover:text-white transition duration-200">
               About
             </span>
           </Link>
