@@ -18,7 +18,7 @@ export const GlobalProvider = ({ children }) => {
 
   /* ACTIONS */
   const fetchCharacters = async () => {
-    dispatch("SET_LOADER", true);
+    dispatch({ type: "SET_LOADER", payload: true });
 
     try {
       const { data } = await axios.get("/character");
@@ -27,7 +27,7 @@ export const GlobalProvider = ({ children }) => {
     } catch (error) {
       dispatch({ type: "ERROR", error: error.response.data.error });
     } finally {
-      dispatch("SET_LOADER", false);
+      dispatch({ type: "SET_LOADER", payload: false });
     }
   };
 
