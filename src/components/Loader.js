@@ -18,8 +18,9 @@ const Loader = () => {
           }`}
         />
         <div
-          className="rounded-full w-24 h-24 border-t-8 border-blue-500"
+          className="rounded-full w-24 h-24 border-8"
           style={{
+            borderTop: "8px solid #4299E1",
             animation: "spin 2s linear infinite",
           }}
         ></div>
