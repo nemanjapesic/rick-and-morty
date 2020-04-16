@@ -1,26 +1,28 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Loader from "../components/Loader";
+import CharactersList from "../components/CharactersList";
 
 const Home = () => {
-  const { loading, characters, fetchCharacters } = React.useContext(
-    GlobalContext
-  );
+  const {
+    loading,
+    fetchCharacters,
+    characters,
+    currentPage,
+  } = React.useContext(GlobalContext);
 
   React.useEffect(() => {
-    fetchCharacters();
+    if (currentPage > 1) {
+      fetchCharacters(currentPage);
+    } else {
+      fetchCharacters();
+    }
     // eslint-disable-next-line
   }, []);
 
   return (
     <React.Fragment>
-      {loading ? (
-        <Loader />
-      ) : (
-        characters.map((character) => (
-          <p key={character.id}>{character.name}</p>
-        ))
-      )}
+      {loading ? <Loader /> : <CharactersList characters={characters} />}
     </React.Fragment>
   );
 };

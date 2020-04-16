@@ -10,6 +10,23 @@ export default (state, action) => {
         ...state,
         characters: action.characters,
       };
+    case "SET_PAGE":
+      return {
+        ...state,
+        currentPage: action.currentPage,
+      };
+    case "ADD_FAVORITE":
+      return {
+        ...state,
+        favorites: [...state.favorites, action.character],
+      };
+    case "REMOVE_FAVORITE":
+      return {
+        ...state,
+        favorites: state.favorites.filter(
+          (character) => character.id !== action.character.id
+        ),
+      };
     case "ERROR":
       return {
         ...state,
