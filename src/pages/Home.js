@@ -1,8 +1,11 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
+import Loader from "../components/Loader";
 
 const Home = () => {
-  const { characters, fetchCharacters } = React.useContext(GlobalContext);
+  const { loading, characters, fetchCharacters } = React.useContext(
+    GlobalContext
+  );
 
   React.useEffect(() => {
     fetchCharacters();
@@ -11,9 +14,13 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      {characters.map((character) => (
-        <p key={character.id}>{character.name}</p>
-      ))}
+      {loading ? (
+        <Loader />
+      ) : (
+        characters.map((character) => (
+          <p key={character.id}>{character.name}</p>
+        ))
+      )}
     </React.Fragment>
   );
 };
