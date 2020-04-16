@@ -1,12 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const history = useHistory();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  React.useEffect(
+    () => {
+      history.listen(() => {
+        setMenuOpen(false);
+      });
+    },
+    // eslint-disable-next-line
+    []
+  );
 
   return (
     <nav className="relative flex items-center justify-between flex-wrap bg-blue-500 py-4">
@@ -19,11 +30,11 @@ const NavBar = () => {
       </div>
       <div className="block md:hidden">
         <button
-          className="flex items-center mr-4 px-2 py-1 border-2 rounded text-blue-200 border-blue-200 hover:text-white hover:border-white focus:outline-none transition duration-200"
+          className="flex items-center mr-4 px-2 py-1 rounded text-blue-200 hover:text-white hover:border-white focus:outline-none transition duration-200"
           onClick={toggleMenu}
         >
           <svg
-            className="fill-current w-6 h-6"
+            className="fill-current w-8 h-8"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
