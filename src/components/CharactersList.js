@@ -30,7 +30,7 @@ const CharactersList = ({ characters }) => {
             </div>
           ))}
           {info && (
-            <div className="text-center pt-4 clear-both">
+            <div className="flex justify-center items-center text-center pt-4 clear-both">
               <button
                 className={`mx-2 text-white font-bold px-4 py-2 rounded transition duration-200 focus:outline-none ${
                   currentPage > 1
