@@ -15,6 +15,11 @@ export default (state, action) => {
         ...state,
         modal: action.modal,
       };
+    case "SET_SEARCH":
+      return {
+        ...state,
+        searchTerm: action.searchTerm,
+      };
     case "SET_PAGE":
       return {
         ...state,

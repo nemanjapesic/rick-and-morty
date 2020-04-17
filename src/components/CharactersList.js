@@ -3,18 +3,18 @@ import { GlobalContext } from "../context/GlobalState";
 import CharacterItem from "./CharacterItem";
 
 const CharactersList = ({ characters }) => {
-  const { currentPage, fetchCharacters } = React.useContext(GlobalContext);
+  const { currentPage, fetchCharacters, searchTerm } = React.useContext(
+    GlobalContext
+  );
 
   let info = null;
 
   if (characters.info) {
     info = characters.info;
-    characters = characters.results;
+    characters = characters.results.filter((character) =>
+      character.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
   }
-
-  React.useEffect(() => {
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <div className="overflow-hidden">
@@ -92,7 +92,7 @@ const CharactersList = ({ characters }) => {
           )}
         </React.Fragment>
       ) : (
-        <div className="text-center mx-4">Sorry, there are no characters</div>
+        <div className="text-center mx-4">Sorry, there are no characters.</div>
       )}
     </div>
   );

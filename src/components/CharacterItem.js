@@ -20,11 +20,11 @@ const CharacterItem = ({ character }) => {
 
   return (
     <div
-      className="h-56 flex flex-col rounded text-center m-4 p-6 bg-gray-100 shadow-md cursor-pointer hover:bg-gray-200 transition duration-200"
+      className="h-56 flex flex-col rounded text-center m-4 p-6 bg-gray-100 shadow cursor-pointer hover:bg-gray-200 transition duration-200"
       onClick={seeDetails}
     >
       <div className="flex">
-        <div className="font-bold text-blue-500">
+        <div className="font-bold text-blue-500 capitalize">
           <i
             className={`fa mr-2 ${
               character.gender.toLowerCase() === "male" ? "fa-mars" : "fa-venus"

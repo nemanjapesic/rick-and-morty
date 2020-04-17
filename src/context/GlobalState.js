@@ -7,7 +7,7 @@ const initialState = {
   loading: false,
   error: false,
   characters: [],
-  character: { name: "Ricky" },
+  character: {},
   favorites: [],
   currentPage: 1,
   modal: {
@@ -15,6 +15,7 @@ const initialState = {
     content: null,
     props: null,
   },
+  searchTerm: "",
 };
 
 // Create Context
@@ -60,6 +61,10 @@ export const GlobalProvider = ({ children }) => {
     dispatch({ type: "SET_MODAL", modal: { open, content, props } });
   };
 
+  const setSearch = (searchTerm) => {
+    dispatch({ type: "SET_SEARCH", searchTerm });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -70,9 +75,11 @@ export const GlobalProvider = ({ children }) => {
         favorites: state.favorites,
         currentPage: state.currentPage,
         modal: state.modal,
+        searchTerm: state.searchTerm,
         fetchCharacters,
         updateFavorites,
         setModal,
+        setSearch,
       }}
     >
       {children}

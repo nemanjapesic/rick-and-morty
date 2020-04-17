@@ -2,6 +2,7 @@ import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Loader from "../components/Loader";
 import CharactersList from "../components/CharactersList";
+import Search from "../components/Search";
 
 const Home = () => {
   const {
@@ -22,7 +23,17 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      {loading ? <Loader /> : <CharactersList characters={characters} />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <React.Fragment>
+          <h1 className="text-4xl font-bold text-center my-10 mx-4">
+            Welcome to Rick and Morty
+          </h1>
+          <Search />
+          <CharactersList characters={characters} />
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 };
