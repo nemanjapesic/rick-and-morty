@@ -1,11 +1,11 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import { routes } from "./routes";
 import Layout from "../components/Layout";
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <HashRouter basename="/">
       <Layout>
         <Switch>
           {routes.map((route, index) => (
@@ -18,7 +18,7 @@ const Router = () => {
           ))}
         </Switch>
       </Layout>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
