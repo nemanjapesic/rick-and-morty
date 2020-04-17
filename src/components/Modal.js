@@ -5,7 +5,6 @@ const Modal = () => {
   const { modal, setModal } = React.useContext(GlobalContext);
 
   const closeModal = (e) => {
-    e.stopPropagation();
     setModal(false);
   };
 
@@ -26,8 +25,9 @@ const Modal = () => {
           left: "50%",
           transform: "translate(-50%, -50%)",
         }}
+        onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col px-4 py-2 bg-white rounded">
+        <div className="flex flex-col p-4 pt-2 bg-white rounded">
           <div className="flex">
             <div
               className="ml-auto text-gray-500 cursor-pointer transform hover:scale-110 transition duration-200"

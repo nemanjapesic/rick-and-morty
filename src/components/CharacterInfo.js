@@ -1,10 +1,29 @@
 import React from "react";
+import { GlobalContext } from "../context/GlobalState";
 import Spinner from "./Spinner";
 
 const CharacterInfo = ({
-  character: { image, name, type, gender, species, status, origin, location },
+  character: {
+    id,
+    image,
+    name,
+    type,
+    gender,
+    species,
+    status,
+    origin,
+    location,
+  },
+  character,
 }) => {
+  const { favorites, updateFavorites } = React.useContext(GlobalContext);
+
   const [imgLoading, setImgLoading] = React.useState(true);
+
+  const addToFavorites = (e) => {
+    e.stopPropagation();
+    updateFavorites(character);
+  };
 
   return (
     <div className="w-full capitalize">
@@ -23,7 +42,20 @@ const CharacterInfo = ({
         />
       </div>
 
-      <h3 className="mt-2 text-xl font-bold text-blue-500">{name}</h3>
+      <h3 className="mt-2 py-2 flex justify-between items-center text-xl font-bold text-blue-500">
+        {name}
+        <div
+          className="text-sm text-red-500 transform hover:scale-110 transition duration-200"
+          onClick={addToFavorites}
+        >
+          <i
+            className={`fa fa-2x ${
+              favorites.find((c) => c.id === id) ? "fa-heart" : "fa-heart-o"
+            }`}
+            aria-hidden="true"
+          ></i>
+        </div>
+      </h3>
 
       {type && (
         <p>
