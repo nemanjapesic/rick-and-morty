@@ -10,6 +10,11 @@ export default (state, action) => {
         ...state,
         characters: action.characters,
       };
+    case "SET_MODAL":
+      return {
+        ...state,
+        modal: action.modal,
+      };
     case "SET_PAGE":
       return {
         ...state,

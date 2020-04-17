@@ -7,8 +7,14 @@ const initialState = {
   loading: false,
   error: false,
   characters: [],
+  character: { name: "Ricky" },
   favorites: [],
   currentPage: 1,
+  modal: {
+    open: false,
+    content: null,
+    props: null,
+  },
 };
 
 // Create Context
@@ -50,16 +56,23 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  const setModal = (open, content = null, props = null) => {
+    dispatch({ type: "SET_MODAL", modal: { open, content, props } });
+  };
+
   return (
     <GlobalContext.Provider
       value={{
         loading: state.loading,
         error: state.error,
         characters: state.characters,
+        character: state.character,
         favorites: state.favorites,
         currentPage: state.currentPage,
+        modal: state.modal,
         fetchCharacters,
         updateFavorites,
+        setModal,
       }}
     >
       {children}

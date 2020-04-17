@@ -1,11 +1,28 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
+import CharacterInfo from "./CharacterInfo";
 
 const CharacterItem = ({ character }) => {
-  const { favorites, updateFavorites } = React.useContext(GlobalContext);
+  const { favorites, updateFavorites, setModal } = React.useContext(
+    GlobalContext
+  );
+
+  const seeDetails = () => {
+    setModal(true, CharacterInfo, {
+      character,
+    });
+  };
+
+  const addToFavorites = (e) => {
+    e.stopPropagation();
+    updateFavorites(character);
+  };
 
   return (
-    <div className="h-56 flex flex-col rounded text-center m-4 p-6 bg-gray-100 shadow-md cursor-pointer hover:bg-gray-200 transition duration-200">
+    <div
+      className="h-56 flex flex-col rounded text-center m-4 p-6 bg-gray-100 shadow-md cursor-pointer hover:bg-gray-200 transition duration-200"
+      onClick={seeDetails}
+    >
       <div className="flex">
         <div className="font-bold text-blue-500">
           <i
@@ -27,10 +44,7 @@ const CharacterItem = ({ character }) => {
       <div className="flex">
         <div
           className="text-sm ml-auto mt-6 text-red-500 transform hover:scale-110 transition duration-200"
-          onClick={(e) => {
-            e.stopPropagation();
-            updateFavorites(character);
-          }}
+          onClick={addToFavorites}
         >
           <i
             className={`fa fa-2x ${
