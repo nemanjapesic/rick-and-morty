@@ -1,5 +1,6 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
+import { Close as CloseIcon } from "../assets/icons/Icons";
 
 const Modal = () => {
   const { modal, setModal } = React.useContext(GlobalContext);
@@ -33,7 +34,7 @@ const Modal = () => {
               className="ml-auto text-gray-500 cursor-pointer transform hover:scale-110 transition duration-200"
               onClick={closeModal}
             >
-              <i className="fa fa-2x fa-close" aria-hidden="true"></i>
+              <CloseIcon className="fill-current w-6 h-6" />
             </div>
           </div>
           <div className="flex flex-1 mt-2">

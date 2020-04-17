@@ -1,6 +1,7 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Spinner from "./Spinner";
+import { Heart, HeartOutline } from "../assets/icons/Icons";
 
 const CharacterInfo = ({
   character: {
@@ -45,15 +46,14 @@ const CharacterInfo = ({
       <h3 className="mt-2 py-2 flex justify-between items-center text-xl font-bold text-blue-500">
         {name}
         <div
-          className="text-sm text-red-500 transform hover:scale-110 transition duration-200"
+          className="text-sm text-red-500 transform hover:scale-110 transition duration-200 cursor-pointer"
           onClick={addToFavorites}
         >
-          <i
-            className={`fa fa-2x ${
-              favorites.find((c) => c.id === id) ? "fa-heart" : "fa-heart-o"
-            }`}
-            aria-hidden="true"
-          ></i>
+          {favorites.find((c) => c.id === id) ? (
+            <Heart className="fill-current w-6 h-6" />
+          ) : (
+            <HeartOutline className="fill-current w-6 h-6" />
+          )}
         </div>
       </h3>
 

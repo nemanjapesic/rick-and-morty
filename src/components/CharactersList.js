@@ -1,6 +1,7 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import CharacterItem from "./CharacterItem";
+import { ChevronLeft, ChevronRight } from "../assets/icons/Icons";
 
 const CharactersList = ({ characters }) => {
   const { currentPage, fetchCharacters, searchTerm } = React.useContext(
@@ -40,8 +41,10 @@ const CharactersList = ({ characters }) => {
                   if (currentPage > 1) fetchCharacters(1);
                 }}
               >
-                <i className={`fa fa-chevron-left`} aria-hidden="true"></i>
-                <i className={`fa fa-chevron-left`} aria-hidden="true"></i>
+                <div className="flex">
+                  <ChevronLeft className="fill-current w-4 h-4" />
+                  <ChevronLeft className="fill-current w-4 h-4" />
+                </div>
               </button>
 
               <button
@@ -56,7 +59,7 @@ const CharactersList = ({ characters }) => {
                   }
                 }}
               >
-                <i className={`fa fa-chevron-left`} aria-hidden="true"></i>
+                <ChevronLeft className="fill-current w-4 h-4" />
               </button>
 
               <span className="mx-6">{currentPage}</span>
@@ -73,7 +76,7 @@ const CharactersList = ({ characters }) => {
                   }
                 }}
               >
-                <i className={`fa fa-chevron-right`} aria-hidden="true"></i>
+                <ChevronRight className="fill-current w-4 h-4" />
               </button>
               <button
                 className={`mx-2 text-white font-bold px-4 py-2 rounded transition duration-200 focus:outline-none ${
@@ -85,8 +88,10 @@ const CharactersList = ({ characters }) => {
                   if (currentPage < info.pages) fetchCharacters(info.pages);
                 }}
               >
-                <i className={`fa fa-chevron-right`} aria-hidden="true"></i>
-                <i className={`fa fa-chevron-right`} aria-hidden="true"></i>
+                <div className="flex">
+                  <ChevronRight className="fill-current w-4 h-4" />
+                  <ChevronRight className="fill-current w-4 h-4" />
+                </div>
               </button>
             </div>
           )}

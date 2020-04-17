@@ -1,6 +1,7 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import CharacterInfo from "./CharacterInfo";
+import { Mars, Venus, Heart, HeartOutline } from "../assets/icons/Icons";
 
 const CharacterItem = ({ character }) => {
   const { favorites, updateFavorites, setModal } = React.useContext(
@@ -24,14 +25,13 @@ const CharacterItem = ({ character }) => {
       onClick={seeDetails}
     >
       <div className="flex">
-        <div className="font-bold text-blue-500 capitalize">
-          <i
-            className={`fa mr-2 ${
-              character.gender.toLowerCase() === "male" ? "fa-mars" : "fa-venus"
-            }`}
-            aria-hidden="true"
-          ></i>{" "}
-          {character.species}
+        <div className="flex items-center font-bold text-blue-500 capitalize">
+          {character.gender.toLowerCase() === "male" ? (
+            <Mars className="fill-current w-4 h-4" />
+          ) : (
+            <Venus className="fill-current w-4 h-4" />
+          )}
+          <span className="ml-2">{character.species}</span>
         </div>
       </div>
 
@@ -46,14 +46,11 @@ const CharacterItem = ({ character }) => {
           className="text-sm ml-auto mt-6 text-red-500 transform hover:scale-110 transition duration-200"
           onClick={addToFavorites}
         >
-          <i
-            className={`fa fa-2x ${
-              favorites.find((c) => c.id === character.id)
-                ? "fa-heart"
-                : "fa-heart-o"
-            }`}
-            aria-hidden="true"
-          ></i>
+          {favorites.find((c) => c.id === character.id) ? (
+            <Heart className="fill-current w-6 h-6" />
+          ) : (
+            <HeartOutline className="fill-current w-6 h-6" />
+          )}
         </div>
       </div>
     </div>
