@@ -52,7 +52,7 @@ const NavBar = () => {
         <div className="ml-auto px-4 border-t border-white md:border-0 md:mt-0">
           <Link to="/">
             <span className="block my-4 mr-4 md:inline-block md:my-0 text-blue-200 hover:text-white transition duration-200">
-              Characters
+              Episodes
             </span>
           </Link>
 

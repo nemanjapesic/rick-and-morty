@@ -5,6 +5,16 @@ export default (state, action) => {
         ...state,
         loading: action.payload,
       };
+    case "SET_EPISODES":
+      return {
+        ...state,
+        episodes: action.episodes,
+      };
+    case "SET_EPISODE":
+      return {
+        ...state,
+        episode: action.episode,
+      };
     case "SET_CHARACTERS":
       return {
         ...state,

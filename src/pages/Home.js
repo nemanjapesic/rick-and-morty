@@ -1,22 +1,19 @@
 import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import Loader from "../components/Loader";
-import CharactersList from "../components/CharactersList";
+import EpisodesList from "../components/EpisodesList";
 import Search from "../components/Search";
 
 const Home = () => {
-  const {
-    loading,
-    fetchCharacters,
-    characters,
-    currentPage,
-  } = React.useContext(GlobalContext);
+  const { loading, fetchEpisodes, episodes, currentPage } = React.useContext(
+    GlobalContext
+  );
 
   React.useEffect(() => {
     if (currentPage > 1) {
-      fetchCharacters(currentPage);
+      fetchEpisodes(currentPage);
     } else {
-      fetchCharacters();
+      fetchEpisodes();
     }
     // eslint-disable-next-line
   }, []);
@@ -31,7 +28,7 @@ const Home = () => {
             Welcome to Rick and Morty
           </h1>
           <Search />
-          <CharactersList characters={characters} />
+          <EpisodesList episodes={episodes} />
         </React.Fragment>
       )}
     </React.Fragment>

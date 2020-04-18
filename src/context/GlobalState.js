@@ -6,6 +6,8 @@ import axios from "axios";
 const initialState = {
   loading: false,
   error: false,
+  episodes: [],
+  episode: null,
   characters: [],
   character: {},
   favorites: [],
@@ -26,22 +28,52 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(AppReducer, initialState);
 
   /* ACTIONS */
-  const fetchCharacters = async (page) => {
+  const fetchEpisodes = async (page) => {
     dispatch({ type: "SET_LOADER", payload: true });
+    dispatch({ type: "SET_EPISODES", episodes: [] });
 
     try {
       if (page) {
         const { data } = await axios.get(
-          `https://rickandmortyapi.com/api/character?page=${page}`
+          `https://rickandmortyapi.com/api/episode?page=${page}`
         );
-        dispatch({ type: "SET_CHARACTERS", characters: data });
+        dispatch({ type: "SET_EPISODES", episodes: data });
 
         dispatch({ type: "SET_PAGE", currentPage: page });
       } else {
-        const { data } = await axios.get("/character");
-        dispatch({ type: "SET_CHARACTERS", characters: data });
+        const { data } = await axios.get("/episode");
+        dispatch({ type: "SET_EPISODES", episodes: data });
         dispatch({ type: "SET_PAGE", currentPage: state.currentPage });
       }
+    } catch (error) {
+      dispatch({ type: "ERROR", error: error.response.data.error });
+    } finally {
+      dispatch({ type: "SET_LOADER", payload: false });
+    }
+  };
+
+  const fetchEpisode = async (episode) => {
+    dispatch({ type: "SET_LOADER", payload: true });
+    dispatch({ type: "SET_EPISODE", episode: null });
+
+    try {
+      const { data } = await axios.get(`/episode/${episode}`);
+      dispatch({ type: "SET_EPISODE", episode: data });
+    } catch (error) {
+      dispatch({ type: "ERROR", error: error.response.data.error });
+    } finally {
+      dispatch({ type: "SET_LOADER", payload: false });
+    }
+  };
+
+  const fetchCharacters = async (characters) => {
+    dispatch({ type: "SET_LOADER", payload: true });
+    dispatch({ type: "SET_CHARACTERS", characters: [] });
+
+    try {
+      const { data } = await axios.get(`/character/${characters}`);
+      dispatch({ type: "SET_CHARACTERS", characters: data });
+      dispatch({ type: "SET_PAGE", currentPage: state.currentPage });
     } catch (error) {
       dispatch({ type: "ERROR", error: error.response.data.error });
     } finally {
@@ -70,12 +102,16 @@ export const GlobalProvider = ({ children }) => {
       value={{
         loading: state.loading,
         error: state.error,
+        episodes: state.episodes,
+        episode: state.episode,
         characters: state.characters,
         character: state.character,
         favorites: state.favorites,
         currentPage: state.currentPage,
         modal: state.modal,
         searchTerm: state.searchTerm,
+        fetchEpisodes,
+        fetchEpisode,
         fetchCharacters,
         updateFavorites,
         setModal,
