@@ -2,6 +2,7 @@ import React from "react";
 import { GlobalContext } from "../context/GlobalState";
 import EpisodeItem from "./EpisodeItem";
 import { ChevronLeft, ChevronRight } from "../assets/icons/Icons";
+import { getUrlParams } from "../utils/helpers";
 
 const EpisodesList = ({ episodes }) => {
   const { currentPage, fetchEpisodes, searchTerm } = React.useContext(
@@ -55,7 +56,7 @@ const EpisodesList = ({ episodes }) => {
                 }`}
                 onClick={() => {
                   if (info.prev.length > 0) {
-                    fetchEpisodes(parseInt(info.prev.split("=")[1]));
+                    fetchEpisodes(parseInt(getUrlParams(info.prev).page));
                   }
                 }}
               >
@@ -72,7 +73,7 @@ const EpisodesList = ({ episodes }) => {
                 }`}
                 onClick={() => {
                   if (info.next.length > 0) {
-                    fetchEpisodes(parseInt(info.next.split("=")[1]));
+                    fetchEpisodes(parseInt(getUrlParams(info.next).page));
                   }
                 }}
               >
