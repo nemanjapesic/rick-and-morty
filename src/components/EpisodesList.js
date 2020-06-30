@@ -50,12 +50,12 @@ const EpisodesList = ({ episodes }) => {
 
               <button
                 className={`mx-2 text-white font-bold px-4 py-2 rounded transition duration-200 focus:outline-none ${
-                  info.prev.length > 0
+                  info.prev && info.prev.length > 0
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 onClick={() => {
-                  if (info.prev.length > 0) {
+                  if (info.prev && info.prev.length > 0) {
                     fetchEpisodes(parseInt(getUrlParams(info.prev).page));
                   }
                 }}
@@ -67,12 +67,12 @@ const EpisodesList = ({ episodes }) => {
 
               <button
                 className={`mx-2 text-white font-bold px-4 py-2 rounded transition duration-200 focus:outline-none ${
-                  info.next.length > 0
+                  info.next && info.next.length > 0
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 cursor-not-allowed"
                 }`}
                 onClick={() => {
-                  if (info.next.length > 0) {
+                  if (info.next && info.next.length > 0) {
                     fetchEpisodes(parseInt(getUrlParams(info.next).page));
                   }
                 }}
